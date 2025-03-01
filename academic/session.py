@@ -30,6 +30,24 @@ class session(models.Model):
     image_small = fields.Binary(string="Image Small", )
 
 
+    state = fields.Selection(string="State",
+                             selection=[('draft','Draft'), ('open','Open'), ('done','Done')],
+                             default='draft',
+                             required=True,
+                             readonly=True)
+
+
+    def action_open(self):
+        self.state = 'open'
+
+    def action_done(self):
+        self.state = 'done'
+
+    def action_draft(self):
+        self.state = 'draft'
+
+
+
     def _calc_taken_seats(self):
         for rec in self:
             if rec.seats > 0:
@@ -64,3 +82,13 @@ class session(models.Model):
             if session.instructor_id.id in partner_ids:
                 raise ValidationError('Instructor tidak boleh menjadi bagian dari Peserta!')
             
+
+
+
+    
+    def copy(self, default=None):
+        self.ensure_one()
+        d = dict(default or {},
+                name=f"Copy of {self.name}"
+                )
+        return super(session, self).copy(default=d)

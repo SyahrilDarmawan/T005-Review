@@ -1,4 +1,4 @@
-from Odoo import http
+from odoo import http
 
 
 class main(http.Controller):

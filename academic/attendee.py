@@ -24,3 +24,5 @@ class Attendee(models.Model):
         related="session_id.course_id",
         store=True)
     
+
+    

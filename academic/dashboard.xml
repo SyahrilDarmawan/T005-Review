@@ -5,14 +5,14 @@
             <field name="name">academic.session.cal</field>
             <field name="res_model">academic.session</field>
             <field name="view_mode">calendar</field>
-            <field name="view_id" ref="session_cal"/>
+            <field name="view_id" ref="view_academic_session_calendar"/>
         </record>
 
         <record model="ir.actions.act_window" id="act_session_graph">
             <field name="name">academic.session.graph</field>
             <field name="res_model">academic.session</field>
             <field name="view_mode">graph</field>
-            <field name="view_id" ref="session_graph"/>
+            <field name="view_id" ref="view_academic_session_graph"/>
         </record>
 
         <record model="ir.actions.act_window" id="act_course_list">

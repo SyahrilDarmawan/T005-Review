@@ -1,5 +1,7 @@
 <odoo>
 <data>
+
+    <!-- Tree -->
     <record id="view_academic_attendee_tree" model="ir.ui.view">
         <field name="name">academic.attendee.tree</field>
         <field name="model">academic.attendee</field>
@@ -9,11 +11,13 @@
                 <field name="name"/>
                 <field name="session_id"/>
                 <field name="partner_id"/>
+                <field name="course_id"/>
             </tree>
         </field>
     </record>
 
     
+    <!-- Seacrh View -->
     <record id="attendee_search" model="ir.ui.view">
         <field name="name">attendee_search</field>
         <field name="model">academic.attendee</field>
@@ -21,16 +25,32 @@
             <search string="Search Attendees">
                 <field name="session_id"/>
                 <field name="name"/>
+                <field name="session_id"/>
+                
                 <group expand="1" string="Group By...">
-                    <filter string="Course" name="group_by_course_id"
-                        icon="terp-personal" domain="[]"
-                        context="{'group_by':'course_id'}"/>
-                    <filter string="Session" name="group_by_session_id"
-                        icon="terp-personal" domain="[]"
-                        context="{'group_by':'session_id'}"/>
-                    <filter string="Partner" name="group_by_partner_id"
-                        icon="terp-personal" domain="[]"
-                        context="{'group_by':'partner_id'}"/>
+                    <filter 
+                        string="Course" 
+                        name="group_by_course_id"
+                        icon="terp-personal" 
+                        domain="[]"
+                        context="{'group_by':'course_id'}"
+                    />
+
+                    <filter 
+                        string="Session" 
+                        name="group_by_session_id"
+                        icon="terp-personal" 
+                        domain="[]"
+                        context="{'group_by':'session_id'}"
+                    />
+
+                    <filter 
+                        string="Partner" 
+                        name="group_by_partner_id"
+                        icon="terp-personal" 
+                        domain="[]"
+                        context="{'group_by':'partner_id'}"
+                    />
                 </group>
             </search>
         </field>

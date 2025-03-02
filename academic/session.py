@@ -92,3 +92,26 @@ class session(models.Model):
                 name=f"Copy of {self.name}"
                 )
         return super(session, self).copy(default=d)
+    
+
+    def open_wizard(self):
+        view = self.env.ref('academic.create_attendee_form')
+        wizard = self.env['academic.create.attendee.wizard'].create({
+           # 'session_id': self.id,
+           'session_ids': [(4,id) for id in self.ids]
+        })
+
+
+
+        return {
+            'name': 'Add Attendee',
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'academic.create.attendee.wizard',
+            'target': 'new',
+            'views': [ (view.id, 'form') ],
+            'view_id': view.id,
+            'res_id': wizard.id,
+            'context': self.env.context,
+        }

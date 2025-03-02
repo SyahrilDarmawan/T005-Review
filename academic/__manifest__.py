@@ -9,6 +9,7 @@
 about your moduels
 """,
     "data":[
+        "security/groups.xml",
         "security/ir.model.access.csv",
         "menu.xml",
         "course.xml",
@@ -16,6 +17,7 @@ about your moduels
         "attendee.xml",
         "partner.xml",
         "dashboard.xml",
+        "wizard/create_attendee.xml",
     ],
     "installable":True,
     "auto_install":False,

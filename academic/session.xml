@@ -75,9 +75,9 @@
             <form string="Session">
 
                 <header>
-                    <button string="Confirm" type="object" name="action_open" states="draft"/>
-                    <button string="Mark as Done" type="object" name="action_done" states="open"/>
-                    <button string="Reset to Draft" type="object" name="action_draft" states="open,done"/>
+                    <button string="Confirm" type="object" name="action_open" states="draft" groups="academic.group_academic_user"/>
+                    <button string="Mark as Done" type="object" name="action_done" states="open" groups="academic.group_academic_manager"/>
+                    <button string="Reset to Draft" type="object" name="action_draft" states="open,done" groups="academic.group_academic_manager"/>
                     
                     <field name="state" widget="statusbar"/>
                 </header>
@@ -87,32 +87,32 @@
                 <div class="oe_title">
                     <label for="name" class="oe_edit_only" string="Session Name"/>
                     <h1>
-                        <field name="name"/>
+                        <field name="name" attrs="{'readonly':[('state','!=','draft')]}"/>
                     </h1>
                 </div>
 
                 <group>
                     <!-- Kolom kiri -->
                     <group>
-                        <field name="course_id"/>           <!-- garis " | " merupakan tanda pemisah sebuah domain, dan jangan lupa pake spasinya-->
-                        <field name="instructor_id" domain="['|', ('is_instructor','=',True), ('category_id','=','Instruktur')]"/>
-                        <field name="start_date"/>
-                         <field name="image_small" widget="image" class="oe_avatar"/>
+                        <field name="course_id" attrs="{'readonly':[('state','!=','draft')]}"/>           <!-- garis " | " merupakan tanda pemisah sebuah domain, dan jangan lupa pake spasinya-->
+                        <field name="instructor_id" attrs="{'readonly':[('state','!=','draft')]}" domain="['|', ('is_instructor','=',True), ('category_id','=','Instruktur')]"/>
+                        <field name="start_date" attrs="{'readonly':[('state','!=','draft')]}"/>
+                         <field name="image_small" attrs="{'readonly':[('state','!=','draft')]}" widget="image" class="oe_avatar"/>
                     </group>
 
                     <!--Kolom Kanan -->
                     <group>
-                        <field name="duration"/>
-                        <field name="seats"/>
-                        <field name="taken_seats" widget="progressbar"/>
-                        <field name="active"/>
+                        <field name="duration" attrs="{'readonly':[('state','!=','draft')]}"/>
+                        <field name="seats" attrs="{'readonly':[('state','!=','draft')]}"/>
+                        <field name="taken_seats" attrs="{'readonly':[('state','!=','draft')]}" widget="progressbar"/>
+                        <field name="active" attrs="{'readonly':[('state','!=','draft')]}"/>
                     </group>
                 </group>
 
 
                 <notebook>
                     <page string="Attendees">
-                        <field name="attendee_ids">
+                        <field name="attendee_ids" attrs="{'readonly':[('state','!=','draft')]}">
                             <tree>
                                 <field name="name"/>
                                 <field name="session_id"/>

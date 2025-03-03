@@ -18,6 +18,7 @@ about your moduels
         "partner.xml",
         "dashboard.xml",
         "wizard/create_attendee.xml",
+        "reports/session.xml",
     ],
     "installable":True,
     "auto_install":False,

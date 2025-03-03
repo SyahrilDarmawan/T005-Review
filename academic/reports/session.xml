@@ -1,0 +1,82 @@
+<odoo>
+    <data>
+    
+    <record id="action_report_academic_session" model="ir.actions.report">
+        <field name="name">Session</field>
+        <field name="model">academic.session</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">academic.academic_session_report</field>
+        <field name="report_file">academic.academic_session_report</field>
+        <field name="print_report_name">object.name</field>
+        <field name="binding_model_id" ref="academic.model_academic_session"/>
+        <field name="binding_type">report</field>
+    </record>
+    
+        <template id="academic_session_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="academic.academic_session_report_document"/>
+                </t>
+            </t>
+        </template>
+
+        <template id="academic_session_report_document">
+            <t t-call="web.external_layout">
+                <t> <t t-set="doc" t-value="doc.with_context({'lang':doc.instructor_id.lang})"/></t>  <!-- Yaitu untuk mengikuti bahasa dari Instructor_id nya nanti tergantung apakah dia bahasa inggris, atau bahasa lain. -->
+
+                <div class="page"> <!-- Page yang fungsinya bawaan dari external_layout -->
+                    <h2>SESSION: <span t-field="doc.name" /></h2> <!-- t-field yaitu sebuah isi variabel bawaan templatenya -->
+
+                    <table class="table -table-condesed"> <!-- Ukuran Table -->
+
+                        <!-- <th> disini berfungsi untuk mengubah teksnya menjadi BOLD -->
+                        <tr>
+                            <td>Course</td>
+                            <th><span t-field="doc.course_id.name"/></th>
+
+                            <td>Instructor</td>
+                            <th><span t-field="doc.instructor_id.name"/></th>
+                        </tr>
+
+                        <tr>
+                            <td>Start Date</td>
+                            <th><span t-field="doc.start_date"/></th>
+
+                            <td>Duration</td>
+                            <th><span t-field="doc.duration"/></th>
+                        </tr>
+
+
+                        <tr>
+                            <td>Taken Seats</td>
+                            <th><span t-field="doc.taken_seats"/></th>
+
+                            <td>Active</td>
+                            <th><span t-field="doc.active"/></th>
+                        </tr>
+                    </table>
+
+                    <!-- Table Attendees -->
+                    <table class="table table-condesed">
+                        <thead> <!-- Thead biasanya untuk kolom yang memberikan "Jenis" informasi tentang data yang akan diisi-->
+                            <tr>
+                                <th>No</th>
+                                <th>Partner</th>
+                                <th>Signed</th>
+                            </tr>
+                        </thead>
+                    
+                        <tbody> <!-- Tbody adalah "isi"nya dari jenis informasi dibagian Thead diatas ini-->
+                            <tr t-foreach="doc.attendee_ids" t-as="att">  <!-- karena dari tr ini bakal gak statis maka harus di looping-->
+                                <td><span t-field="att.name"/></td>
+                                <td><span t-field="att.partner_id"/></td>
+                                <td>..............</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t> 
+        </template>
+
+    </data>
+</odoo>

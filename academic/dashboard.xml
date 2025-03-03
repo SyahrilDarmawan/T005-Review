@@ -2,21 +2,21 @@
     <data>
         <!-- 4. Tambah action item dashboard -->
         <record model="ir.actions.act_window" id="act_session_calendar">
-            <field name="name">academic.session.cal</field>
+            <field name="name">act_session_calendar</field>
             <field name="res_model">academic.session</field>
             <field name="view_mode">calendar</field>
             <field name="view_id" ref="view_academic_session_calendar"/>
         </record>
 
         <record model="ir.actions.act_window" id="act_session_graph">
-            <field name="name">academic.session.graph</field>
+            <field name="name">act_session_graph</field>
             <field name="res_model">academic.session</field>
             <field name="view_mode">graph</field>
             <field name="view_id" ref="view_academic_session_graph"/>
         </record>
 
         <record model="ir.actions.act_window" id="act_course_list">
-            <field name="name">academic.course.list</field>
+            <field name="name">act_course_list</field>
             <field name="res_model">academic.course</field>
             <field name="view_mode">tree,form</field>
         </record>
@@ -59,7 +59,7 @@
         <menuitem id="menu_dashboard"
             name="Dashboard"
             sequence="0"
-            parent="academic_0"/>
+            parent="academic_1"/>
 
         <!-- 1. Tambah menu sub level 2 -->
         <menuitem id="menu_board_session"
